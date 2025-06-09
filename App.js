@@ -3,26 +3,33 @@ import { Button, TextInput, Text, View, StyleSheet, TouchableOpacity } from 'rea
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Ionicons } from '@expo/vector-icons';
-
+import Layout from './Components/Layout';
+import Card from './Components/Card';
+import CardNoticias from './Components/CardNoticias';
 //
 // Screens del Primer Stack
 //
 function ScreenA1() {
   const navigation = useNavigation();
   return (
-    <View style={styles.homeScreen}>
+    <View /*style={styles.homeScreen}*/>
+      <Layout>
+        
+      </Layout>
+      <Card>    
+      </Card>
       <Text style={styles.text}>HOME</Text>
       <Text style={styles.description}>
-        Primer Stack - Primer Screen
-        {'\n\n'}
-        Boton para navegar a ScreenA2
-        {'\n'}
-        navigation.navigate('ScreenA2').
-        {'\n'}
+      <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('ScreenA2')}
+        >
+          <Text style={styles.buttonText}>Inciar Sesion</Text>
+        </TouchableOpacity>
       </Text>
-      <Button title="Ir A ScreenA2" onPress={() => navigation.navigate('ScreenA2')} />
     </View>
   );
 }
@@ -31,6 +38,9 @@ function ScreenA2() {
   const navigation = useNavigation();
   return (
     <View style={styles.homeScreen}>
+      <Layout>
+        
+        </Layout>
       <Text style={styles.text}>HOME - ALGO</Text>
       <Text style={styles.description}>
         Primer Stack - Segunda Screen
@@ -139,21 +149,72 @@ function ScreenC2() {
   );
 }
 
+function ScreenD1() {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.perfilScreen}>
+      <Layout>
+        {/* Aquí agregamos el componente CardNoticias */}
+        <CardNoticias />
+      </Layout>
+
+      <Button title="IR A ScreenD2" onPress={() => navigation.navigate('ScreenD2')} />
+    </View>
+  );
+}
+
+
+function ScreenD2() {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.perfilScreen}>
+      <Text style={styles.text}>PERFIL - EDICION</Text>
+      
+      <Text style={styles.label}>Name</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your name"
+      />
+      <Text style={styles.label}>Email</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your email"
+        keyboardType="email-address"
+      />
+
+      <Text style={styles.label}>Password</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your password"
+        secureTextEntry
+      />
+
+      <Button title="IR A ScreenD1" onPress={() => navigation.navigate('ScreenC1')} />
+    </View>
+  );
+}
+
+
 //
 // Creación de los stacks
 //
 const StackA = createNativeStackNavigator();
 const StackB = createNativeStackNavigator();
 const StackC = createNativeStackNavigator();
-
+const StackD = createNativeStackNavigator();
 function StackANavigator() {
   return (
     <StackA.Navigator>
-      <StackA.Screen name="ScreenA1" component={ScreenA1} />
+      <StackA.Screen 
+        name="ScreenA1" 
+        component={ScreenA1} 
+        options={{ headerShown: false }} 
+      />
       <StackA.Screen name="ScreenA2" component={ScreenA2} />
     </StackA.Navigator>
   );
 }
+
 
 function StackBNavigator() {
   return (
@@ -208,45 +269,75 @@ function StackCNavigator() {
   );
 }
 
+function StackDNavigator() {
+  return (
+    <StackD.Navigator>
+      <StackD.Screen name="ScreenD1" component={ScreenD1} />
+      <StackD.Screen name="ScreenD2" component={ScreenD2} />
+    </StackD.Navigator>
+  );
+}
+
 //
 // Creación del BottomTabNavigator
 //
 const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: '#0b6623',  // Fondo verde Banfield para la barra de tabs
+        },
+        tabBarActiveTintColor: 'white', // Íconos de las pestañas activas en blanco
+        tabBarInactiveTintColor: 'white', // Íconos de las pestañas inactivas también en blanco
+      }}
+    >
       <Tab.Screen 
         name="Home" 
         component={StackANavigator} 
-        /*options={{
+        options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="home" size={24} color={color} />
+            <Ionicons name="home" size={24} color={color} /> // Los iconos serán blancos
           ),
-        }}*/
+          headerShown: false, // Eliminar la barra superior
+        }}
       />
       <Tab.Screen 
         name="Buscador" 
         component={StackBNavigator} 
-        /*options={{
+        options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="search" size={24} color={color} />
+            <Ionicons name="search" size={24} color={color} /> // Los iconos serán blancos
           ),
-        }}*/
+          headerShown: false, // Eliminar la barra superior
+        }}
       />
       <Tab.Screen 
         name="Perfil" 
         component={StackCNavigator} 
         options={{
-          // title: 'Perfil', // Lo pone en todos! 
           tabBarIcon: ({ color }) => (
-            <Ionicons name="person" size={24} color={color} />
-            // name = "person", "search", "home"
+            <Ionicons name="person" size={24} color={color} /> // Los iconos serán blancos
           ),
+          headerShown: false, // Eliminar la barra superior
+        }}
+      />
+      <Tab.Screen 
+        name="Noticias" 
+        component={StackBNavigator} 
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="newspaper" size={24} color="white" /> // Los iconos serán blancos
+          ),
+          headerShown: false, // Eliminar la barra superior
         }}
       />
     </Tab.Navigator>
   );
 }
+
+
 
 //
 // Envolviendo la aplicación en el NavigationContainer
@@ -282,25 +373,25 @@ const styles = StyleSheet.create({
     flex: 1, 
     justifyContent: 'center', 
     alignItems: 'center', 
-    backgroundColor:'#ff0000' 
+    backgroundColor:'#0b6623' 
   },
   
   searchScreen: { 
     flex: 1, 
     justifyContent: 'center', 
     alignItems: 'center', 
-    backgroundColor:'#044a16' 
+    backgroundColor:'#0b6623' 
   },
   perfilScreen: { 
     flex: 1, 
     justifyContent: 'center', 
     alignItems: 'center', 
-    backgroundColor:'#0000ff' 
+    backgroundColor:'#0b6623' 
   },
   label: {
     fontSize: 16,
     marginBottom: 5,
-    color: 'white',
+    color: 's',
   },
   input: {
     height: 40,
@@ -311,4 +402,32 @@ const styles = StyleSheet.create({
     width: '90%',
     color: 'white',
   },
+
+  button: {
+    width: "80%", // Esto sigue centrado
+    height: 55, 
+    backgroundColor: "#047832",
+    borderRadius: 50, 
+    justifyContent: "center", // Asegura que el contenido esté centrado verticalmente
+    alignItems: "center", // Centra el contenido horizontalmente
+    shadowColor: "#4CAF50", 
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.4, 
+    shadowRadius: 15, 
+    elevation: 12,
+    display: 'flex', // Esto asegura que se use el modelo Flexbox
+    marginLeft: 'auto', // Centra el contenedor horizontalmente
+    marginRight: 'auto', // Centra el contenedor horizontalmente
+  },
+  
+  buttonText: {
+    color: "#fff", 
+    fontSize: 19, 
+    fontWeight: "bold", 
+  },
+
+
 });
