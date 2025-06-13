@@ -61,17 +61,9 @@ function ScreenB1() {
   const navigation = useNavigation();
   return (
     <View style={styles.searchScreen}>
-      <Text style={styles.text}>BUSCADOR</Text>
-      <Text style={styles.description}>
-        Segundo Stack - Primer Screen
-        {'\n\n'}
-        * Botones para navegar a ScreenB2 y ScreenB2 enviando Parametros:
-        {'\n'}
-        navigation.navigate('ScreenB2', {'{itemId: 1k}'})
-        {'\n\n'}
-        * Ejemplo de un boton con un Icono de 'Ionicons'
-        {'\n'}
-      </Text>
+      <Layout>
+        
+      </Layout>
       <Button title="ScreenB2 itemId: 1" onPress={() => navigation.navigate('ScreenB2', { itemId: 1 })} />
       <Button title="ScreenB2 itemId: 2" onPress={() => navigation.navigate('ScreenB2', { itemId: 2 })} />
       <TouchableOpacity onPress={() => alert('Presionaste en el Icono!')}>
@@ -148,17 +140,16 @@ function ScreenC2() {
   );
 }
 
-function ScreenD1() {
-  const navigation = useNavigation();
-  return (
-    <View style={styles.perfilScreen}>
-      <Layout />
-       <CardNoticias /> 
-    
-      <Button title="IR A ScreenD2" onPress={() => navigation.navigate('ScreenD2')} />
+  function ScreenD1() {
+    const navigation = useNavigation();
+    return (
+    <View style={styles.container}>
+      <Layout>
+        <CardNoticias />
+      </Layout>
     </View>
-  );
-}
+    );
+  }
 
 
 function ScreenD2() {
@@ -215,7 +206,7 @@ function StackANavigator() {
 
 function StackBNavigator() {
   return (
-    <StackB.Navigator>
+    <StackB.Navigator screenOptions={{headerShown: false}} >
       <StackB.Screen name="ScreenB1" component={ScreenB1} />
       <StackB.Screen name="ScreenB2" component={ScreenB2} />
     </StackB.Navigator>

@@ -1,3 +1,4 @@
+// Layout.js
 import React from "react";
 import {
   StyleSheet,
@@ -6,23 +7,17 @@ import {
   ImageBackground,
   SafeAreaView,
   Image,
-
+  ScrollView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useFonts } from "expo-font";
-// import Card from "./Components/Card";
 
 const imgFondo = require("../assets/FondoPantalla.jpg");
 const logo = require("../assets/Logo.png");
 
-export default function Layout() {
-  const [fontsLoaded] = useFonts({
-    "Gotham-Book": require("../assets/Gotham-Book.ttf"),
-  });
-
+export default function Layout({ children }) {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Image source={logo} style={styles.logo} />
@@ -32,14 +27,10 @@ export default function Layout() {
         </View>
       </View>
 
-      <ImageBackground
-        source={imgFondo}
-        resizeMode="cover"
-        style={styles.backgroundImage}
-      >
-        {/* <Card style={styles.card}>
-
-        </Card> */}
+      <ImageBackground source={imgFondo} style={styles.backgroundImage}>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          {children}
+        </ScrollView>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -56,37 +47,28 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
   headerContent: {
     flexDirection: "row",
     alignItems: "center",
   },
-
   logo: {
     width: 45,
     height: 45,
     marginTop: "4.2%",
   },
-
   headerText: {
-    fontFamily: "Gotham-Book",
     fontSize: 22,
     color: "#fff",
     marginTop: "4.2%",
   },
-
   boldText: {
     fontWeight: "bold",
   },
-
   backgroundImage: {
     flex: 1,
   },
-
-  card: {
-    alignItems: 'center',  
-    justifyContent: 'center',  
-    flex: 1,
-    paddingTop: '25%',
-  }
+  scrollContainer: {
+    padding: 20,
+    paddingBottom: 50,
+  },
 });
