@@ -21,7 +21,6 @@ function ScreenA1() {
       </Layout>
       <Card>    
       </Card>
-      <Text style={styles.text}>HOME</Text>
       <Text style={styles.description}>
       <TouchableOpacity
           style={styles.button}
@@ -153,11 +152,9 @@ function ScreenD1() {
   const navigation = useNavigation();
   return (
     <View style={styles.perfilScreen}>
-      <Layout>
-        {/* Aquí agregamos el componente CardNoticias */}
-        <CardNoticias />
-      </Layout>
-
+      <Layout />
+       <CardNoticias /> 
+    
       <Button title="IR A ScreenD2" onPress={() => navigation.navigate('ScreenD2')} />
     </View>
   );
@@ -271,8 +268,9 @@ function StackCNavigator() {
 
 function StackDNavigator() {
   return (
-    <StackD.Navigator>
+    <StackD.Navigator screenOptions={{headerShown: false}}>
       <StackD.Screen name="ScreenD1" component={ScreenD1} />
+       
       <StackD.Screen name="ScreenD2" component={ScreenD2} />
     </StackD.Navigator>
   );
@@ -325,7 +323,7 @@ function MyTabs() {
       />
       <Tab.Screen 
         name="Noticias" 
-        component={StackBNavigator} 
+        component={StackDNavigator} 
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="newspaper" size={24} color="white" /> // Los iconos serán blancos

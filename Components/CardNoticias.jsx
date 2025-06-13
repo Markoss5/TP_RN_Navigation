@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, Animated, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-// Noticias
 const noticias = [
   {
     title: "Histórica venta de Gerónimo Rivera de 15 millones al Barcelona",
@@ -33,10 +32,8 @@ const CardNoticias = () => {
   return (
     <View style={styles.container}>
       {noticias.map((noticia, index) => (
-        <Animated.View style={[styles.card, { opacity: new Animated.Value(0) }]} key={index}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('DetalleNoticia', { noticia })}
-          >
+        <View style={styles.card} key={index}>
+          <TouchableOpacity onPress={() => navigation.navigate('DetalleNoticia', { noticia })}>
             <Image source={{ uri: noticia.image }} style={styles.cardImage} />
             <View style={styles.cardContent}>
               <Text style={styles.cardTitle}>{noticia.title}</Text>
@@ -44,7 +41,7 @@ const CardNoticias = () => {
             </View>
             <Ionicons name="ios-arrow-forward" size={24} color="#FFF" style={styles.icon} />
           </TouchableOpacity>
-        </Animated.View>
+        </View>
       ))}
     </View>
   );
@@ -61,12 +58,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 15,
     overflow: 'hidden',
-    elevation: 10, // Sombra en Android
-    shadowColor: '#000', // Sombra en iOS
+    elevation: 10,
+    shadowColor: '#000',
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 10 },
     shadowRadius: 10,
-    transform: [{ translateY: new Animated.Value(0) }], // Efecto de animación
   },
   cardImage: {
     width: '100%',
