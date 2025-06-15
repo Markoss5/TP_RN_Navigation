@@ -38,7 +38,7 @@ export default function Layout({ children }) {
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1,
+    backgroundColor: '#047832'
   },
   header: {
     backgroundColor: "#047832",
@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
+     width: '100%',
+      height: '100%'
   },
   scrollContainer: {
     padding: 20,

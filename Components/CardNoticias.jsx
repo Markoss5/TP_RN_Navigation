@@ -33,19 +33,20 @@ const CardNoticias = () => {
     <View style={styles.container}>
       {noticias.map((noticia, index) => (
         <View style={styles.card} key={index}>
-          <TouchableOpacity onPress={() => navigation.navigate('DetalleNoticia', { noticia })}>
+          <TouchableOpacity onPress={() => navigation.navigate('ScreenD2', { itemId: 1 })}>
             <Image source={{ uri: noticia.image }} style={styles.cardImage} />
             <View style={styles.cardContent}>
               <Text style={styles.cardTitle}>{noticia.title}</Text>
               <Text style={styles.cardDescription}>{noticia.description}</Text>
             </View>
-            <Ionicons name="ios-arrow-forward" size={24} color="#FFF" style={styles.icon} />
           </TouchableOpacity>
         </View>
       ))}
     </View>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   container: {
