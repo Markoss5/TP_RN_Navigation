@@ -354,102 +354,106 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-
-container: {
-  flex: 1,
-  justifyContent: "center",
-  alignItems: "center",
-  backgroundColor: "transparent", // ¡clave!
-},
- // Fondo negro para contrastar el texto blanco
-  text: {
-    color: "white",
-    fontSize: 20,
-  },
-  description: {
-    color: "white",
-    fontSize: 16,
-  },
-  button: {
-    marginTop: 20,
+  container: {
+    flex: 1,
+    backgroundColor: "#0b6623",
+    padding: 20,
   },
 
   homeScreen: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#0b6623",
+    paddingHorizontal: 20,
+    justifyContent: "center",
   },
 
   searchScreen: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#0b6623",
+    paddingHorizontal: 20,
+    justifyContent: "center",
+  },
+
+
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+
+  description: {
+    fontSize: 16,
+    color: "white",
+    textAlign: "center",
+    marginVertical: 10,
   },
 
   label: {
     fontSize: 16,
+    color: "#333",
+    alignSelf: "flex-start",
     marginBottom: 5,
-    color: "s",
   },
+
   input: {
-    height: 40,
-    borderColor: "#ccc",
+    height: 45,
+    borderColor: "#aaa",
     borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
-    width: "90%",
-    color: "white",
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    marginBottom: 15,
+    width: "100%",
+    backgroundColor: "#f5f5f5",
+    color: "#333",
   },
 
   button: {
-    width: "80%", // Esto sigue centrado
-    height: 55,
+    width: "100%",
+    height: 50,
     backgroundColor: "#047832",
-    borderRadius: 50,
-    justifyContent: "center", // Asegura que el contenido esté centrado verticalmente
-    alignItems: "center", // Centra el contenido horizontalmente
-    shadowColor: "#4CAF50",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.4,
-    shadowRadius: 15,
-    elevation: 12,
-    display: "flex", // Esto asegura que se use el modelo Flexbox
-    marginLeft: "auto", // Centra el contenedor horizontalmente
-    marginRight: "auto", // Centra el contenedor horizontalmente
+    borderRadius: 25,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 6,
   },
 
   buttonText: {
     color: "#fff",
-    fontSize: 19,
+    fontSize: 17,
     fontWeight: "bold",
   },
 
-  perfilScreen: {
-flex: 1, // Hace que el contenedor ocupe todo el espacio disponible
-    justifyContent: "center", // Centra los elementos verticalmente
-    alignItems: "center", // Centra los elementos horizontalmente
-    backgroundColor: "white",
-  },
   cardImage: {
     width: "100%",
     height: 200,
     borderRadius: 10,
+    resizeMode: "cover",
     marginBottom: 20,
   },
 
-  ProfileImage: {
-    width: 150, // Establece un tamaño adecuado para la imagen
-    height: 150,
-    borderRadius: 75, // Esto le da forma circular
-    marginBottom: 20, // Espacio debajo de la imagen
-    resizeMode: "cover", // Asegura que la imagen se ajuste correctamente
-alignItems: 'center',
-marginLeft: "30%",
+  perfilScreen: {
+    flex: 1,
+    backgroundColor: "white",
+    padding: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
-
+  
+  ProfileImage: {
+    width: 140,
+    height: 140,
+    borderRadius: 70,
+    marginBottom: 20,
+    resizeMode: "cover",
+    alignSelf: "center",
+  },
+  
+  
 });

@@ -51,18 +51,18 @@ const CardNoticias = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 10,
   },
   card: {
     backgroundColor: '#0b6623',
     marginBottom: 20,
     borderRadius: 15,
     overflow: 'hidden',
-    elevation: 10,
+    elevation: 6, // más suave
     shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 0, height: 10 },
-    shadowRadius: 10,
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 6 },
+    shadowRadius: 8,
   },
   cardImage: {
     width: '100%',
@@ -71,10 +71,10 @@ const styles = StyleSheet.create({
   },
   cardContent: {
     padding: 15,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
   cardTitle: {
-    fontSize: 20,
+    fontSize: 18,
     color: 'white',
     fontWeight: 'bold',
   },
@@ -83,11 +83,7 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop: 5,
   },
-  icon: {
-    position: 'absolute',
-    right: 15,
-    bottom: 15,
-  },
 });
+
 
 export default CardNoticias;

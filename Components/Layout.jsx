@@ -1,4 +1,4 @@
-// Layout.js
+// Layout.jsx
 import React from "react";
 import {
   StyleSheet,
@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
+  Platform,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
@@ -27,9 +28,14 @@ export default function Layout({ children }) {
         </View>
       </View>
 
-      <ImageBackground source={imgFondo} style={styles.backgroundImage}>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          {children}
+      <ImageBackground source={imgFondo} style={styles.backgroundImage} resizeMode="cover">
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.contentWrapper}>
+            {children}
+          </View>
         </ScrollView>
       </ImageBackground>
     </SafeAreaView>
@@ -38,7 +44,8 @@ export default function Layout({ children }) {
 
 const styles = StyleSheet.create({
   safeArea: {
-    backgroundColor: '#047832'
+    flex: 1,
+    backgroundColor: '#047832',
   },
   header: {
     backgroundColor: "#047832",
@@ -46,31 +53,35 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: Platform.OS === "android" ? 20 : 0,
   },
   headerContent: {
     flexDirection: "row",
     alignItems: "center",
+    gap: 10,
   },
   logo: {
-    width: 45,
-    height: 45,
-    marginTop: "4.2%",
+    width: 40,
+    height: 40,
   },
   headerText: {
     fontSize: 22,
     color: "#fff",
-    marginTop: "4.2%",
   },
   boldText: {
     fontWeight: "bold",
   },
   backgroundImage: {
     flex: 1,
-     width: '100%',
-      height: '100%'
+    width: "100%",
+    height: "100%",
   },
   scrollContainer: {
-    padding: 20,
-    paddingBottom: 50,
+    flexGrow: 1,
+    paddingBottom: 100,
+  },
+  contentWrapper: {
+    paddingHorizontal: 20,
+    paddingTop: 30,
   },
 });
